@@ -19,11 +19,8 @@ public class Client {
 
             String request = "{\"title\": \"булка\", \"date\": \"2023.12.01\", \"sum\": 2000}";
             writer.println(request);
-
             JSONObject object = (JSONObject) parser.parse(reader.readLine());
             System.out.println(object);
-
-
         } catch (IOException e) {
             e.getMessage();
         }
