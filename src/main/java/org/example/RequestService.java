@@ -17,7 +17,6 @@ public class RequestService {
             e.getMessage();
         }
     }
-
     /**
      * Метод возвращает строку с максимальной категорией, взаимодействует с классом MaxCategories
      */
@@ -61,9 +60,6 @@ public class RequestService {
         obj.put("MaxDayCategory", listDay);
         obj.put("MaxMonthCategory", listMonth);
         obj.put("MaxYearCategory",listYear);
-
         return obj;
     }
-
-
 }

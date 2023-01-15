@@ -18,6 +18,7 @@ public class MaxCategories {
         HashMap<String, Long> day = new HashMap<>();
         HashMap<String, Long> month = new HashMap<>();
         HashMap<String, Long> year = new HashMap<>();
+
         JSONParser parser = new JSONParser();
         LocalDate currentDate = LocalDate.now();
         DateTimeFormatter formatters = DateTimeFormatter.ofPattern("yyyy.MM.dd");
@@ -30,18 +31,18 @@ public class MaxCategories {
                 String cat = CategoriesGetter.getCategories((String) jsonObject.get("title"));
                 long amount = (long) jsonObject.get("sum");
                 if (currentDate.getYear() == dateForLine.getYear()) {
-                    check(year, cat, amount);
+                    countingMap(year, cat, amount);
                     if (currentDate.getMonth() == dateForLine.getMonth()) {
-                        check(month, cat, amount);
+                        countingMap(month, cat, amount);
                         if (currentDate.getDayOfMonth() == dateForLine.getDayOfMonth()) {
-                            check(day, cat, amount);
+                            countingMap(day, cat, amount);
                         }
                     }
                 }
             }
-            list.add(maximumCheck(year));
-            list.add(maximumCheck(month));
-            list.add(maximumCheck(day));
+            list.add(maximumCalc(year));
+            list.add(maximumCalc(month));
+            list.add(maximumCalc(day));
 
         } catch (Exception e) {
             e.getMessage();
@@ -59,22 +60,22 @@ public class MaxCategories {
                 JSONObject jsonObject = (JSONObject) obj;
                     String cat = CategoriesGetter.getCategories((String) jsonObject.get("title"));
                     long amount = (long) jsonObject.get("sum");
-                    check(map, cat, amount);
+                    countingMap(map, cat, amount);
             }
         } catch (Exception e) {
             e.getMessage();
         }
-        return maximumCheck(map);
+        return maximumCalc(map);
     }
 
-    public static void check(HashMap<String, Long> map, String cat, Long amount) {
+    public static void countingMap(HashMap<String, Long> map, String cat, Long amount) {
         if (map.containsKey(cat)) {
             map.put(cat, map.get(cat) + amount);
         } else {
             map.put(cat, amount);
         }
     }
-    public static Map.Entry<String, Long> maximumCheck (HashMap<String, Long> map) {
+    public static Map.Entry<String, Long> maximumCalc(HashMap<String, Long> map) {
         Map.Entry<String, Long> maxEntry = null;
         for (Map.Entry<String, Long> entry : map.entrySet()) {
             if (maxEntry == null || entry.getValue() > maxEntry.getValue()) {
