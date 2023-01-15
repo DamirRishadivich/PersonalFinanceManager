@@ -4,7 +4,9 @@ import com.opencsv.exceptions.CsvValidationException;
 import java.io.FileReader;
 import java.io.IOException;
 
-
+/**
+ * Метод предназначен для поиска категории по categories.tsv
+ */
 public class CategoriesGetter {
     public static String getCategories(String title) throws IOException, CsvValidationException {
         CSVReader reader = new CSVReader(new FileReader("categories.tsv"));

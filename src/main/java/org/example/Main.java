@@ -1,23 +1,16 @@
 package org.example;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-//        String request = "{\"title\": \"шапка\", \"date\": \"2022.02.08\", \"sum\": 200}";
-//        RequestService.saveToLogFile(request);
-//        String s = RequestService.JSONResponse();
-        try (ServerSocket serverSocket = new ServerSocket(8989);) {
-            while (true) {
+    public static void main(String[] args) {
+        try (ServerSocket serverSocket = new ServerSocket(8989);) { // стартуем сервер один(!) раз
+            while (true) { // в цикле(!) принимаем подключения
                 try (
                         Socket socket = serverSocket.accept();
                         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -32,6 +25,10 @@ public class Main {
             System.out.println("Не могу стартовать сервер");
             e.printStackTrace();
         }
+
+
+
+
 
 
     }
